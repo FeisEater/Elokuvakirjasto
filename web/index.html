@@ -9,14 +9,8 @@
   <body ng-app="MovieApp">
     <h1>Wassup, world!</h1>
 
-    <div ng-controller="ListMoviesController">
-        <ul ng-repeat="movie in movies">
-            <li>{{movie.title}}</li>
-        </ul>
-    </div>
-    <div ng-controller="AddMovieController">
-        <button ng-click="addMovie()">Add Movie</button>
-    </div>
+    <div ng-view></div>
+    
     <!-- Hyödyllisiä kirjastoja -->
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
@@ -28,5 +22,7 @@
     <script src="app/services/firebase_service.js"></script>
     <script src="app/controllers/listmovies_controller.js"></script>
     <script src="app/controllers/addmovie_controller.js"></script>
+    <script src="app/controllers/showmovie_controller.js"></script>
+    <script src="app/controllers/editmovie_controller.js"></script>
   </body>
 </html>

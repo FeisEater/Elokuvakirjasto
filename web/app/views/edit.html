@@ -1,0 +1,34 @@
+<form name="editMovieForm">
+    <p>
+        <label>Title</label>
+        <input name="title" type="text" ng-model="movie.title" required>
+        <div ng-show="editMovieForm.title.$invalid && editMovieForm.title.$dirty">
+            Title is not valid
+        </div>
+    </p>
+    <p>
+        <label>Director</label>
+        <input name="director" type="text" ng-model="movie.director" required>
+        <div ng-show="editMovieForm.director.$invalid && editMovieForm.director.$dirty">
+            Director is not valid
+        </div>
+    </p>
+    <p>
+        <label>Year</label>
+        <input name="year" type="text" ng-model="movie.year" required ng-minlength="4" ng-pattern="/^[0-9]+$/">
+        <div ng-show="editMovieForm.year.$invalid && editMovieForm.year.$dirty">
+            Publishing year is not valid
+        </div>
+    </p>
+    <p>
+        <label>Description</label>
+        <input name="description" type="text" ng-model="movie.description" required>
+        <div ng-show="editMovieForm.description.$invalid && editMovieForm.description.$dirty">
+            Description is not valid
+        </div>
+    </p>
+   <p>
+        <button type="submit" value="Edit Movie" ng-disabled="editMovieForm.$invalid" ng-click="editMovie()">Edit Movie</button>
+    </p>
+</form>
+<a ng-href="#/movies">Back</a>

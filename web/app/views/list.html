@@ -1,0 +1,6 @@
+<ul ng-repeat="movie in movies">
+    <li><a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a>
+        <a ng-href="#/movies/{{movie.$id}}/edit">Edit</a>
+        <button ng-click="removeMovie(movie)">Remove</button></li>
+</ul>
+<a ng-href="#/movies/new">Add Movie</a>

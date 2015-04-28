@@ -10,6 +10,12 @@ MovieApp.service('FirebaseService', function($firebase){
     this.getMovies = function(){
       return movies;
     }
+    
+    this.getMovie = function(key, done){
+        movies.$loaded(function(){
+          done(movies.$getRecord(key));
+        });
+    }
 
     this.editMovie = function(movie){
       movies.$save(movie);

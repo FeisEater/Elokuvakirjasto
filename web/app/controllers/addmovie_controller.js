@@ -1,8 +1,18 @@
-MovieApp.controller('AddMovieController', function($scope, $routeParams, FirebaseService){
+MovieApp.controller('AddMovieController', function($scope, $location, FirebaseService){
     $scope.addMovie = function(){
-        console.log("added");
+        if ($scope.newTitle == "" || $scope.newDirector == "" || $scope.newYear == "" || $scope.newDescription == "")
+            return;
         FirebaseService.addMovie({
-            title: 'Forrest Gump'
+            title: $scope.newTitle,
+            director: $scope.newDirector,
+            year: $scope.newYear,
+            description: $scope.newDescription
         });
+        $scope.newTitle = "";
+        $scope.newDirector = "";
+        $scope.newYear = "";
+        $scope.newDescription = "";
+        //$scope.addMovieForm.$setPristine();
+        $location.path('/movies');
     }
 });
