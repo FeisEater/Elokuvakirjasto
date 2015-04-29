@@ -1,5 +1,9 @@
 var MovieApp = angular.module('MovieApp', ['ngRoute', 'firebase']);
 
+MovieApp.config(['$httpProvider', function($httpProvider) {
+  delete $httpProvider.defaults.headers.common["X-Requested-With"]
+}]);
+
 MovieApp.config(function($routeProvider){
 	$routeProvider.when('/', {
 		controller: 'ListMoviesController',
@@ -12,6 +16,10 @@ MovieApp.config(function($routeProvider){
         .when('/movies/new', {
                 controller: 'AddMovieController',
                 templateUrl: 'app/views/new.html'
+        })
+        .when('/movies/search', {
+                controller: 'SearchMoviesController',
+                templateUrl: 'app/views/search.html'
         })
         .when('/movies/:id', {
                 controller: 'ShowMovieController',

@@ -1,0 +1,25 @@
+<h2>Search movies from OMDb</h2>
+
+<label>Movie title:</label>
+<input type="text" ng-model="name">
+
+<label>Publishing year:</label>
+<input type="text" ng-model="year">
+
+<button ng-click="search()">Search</button>
+
+<br>
+
+<div ng-if="count > 0">
+    <p>Haulla löytyi {{count}} <ng-pluralize count="count" when="{'1': 'elokuva', 'other': 'elokuvaa'}"></ng-pluralize></p>
+    <ul ng-repeat="movie in movies">
+        <li><a ng-href="http://www.imdb.com/title/{{movie.imdbID}}">{{movie.Title}} ({{movie.Year}})</a></li>
+    </ul>
+</div>
+<div ng-if="count == 0">
+    <p>Hakusanalla ei löytynyt elokuvia</p>
+</div>
+
+<br>
+
+<a ng-href="#/movies">Back</a>
