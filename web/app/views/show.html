@@ -1,13 +1,11 @@
-<h2>{{movie.title}}</h2>
-<p>
-    <strong>Director:</strong> {{movie.director}}
-</p>
-<p>
-    <strong>Publishing year:</strong> {{movie.year}}
-</p>
-<p>
-    <strong>Description:</strong> <br><br>
-    {{movie.description}}
-</p>
-<br>
-<a ng-href="#/movies">Back</a>
+<div class="container-fluid">
+    <h1>{{movie.title}}</h1>
+    <ul>
+        <li><strong>Ohjaaja:</strong> {{movie.director}}</li>
+        <li><strong>Julkaisuvuosi:</strong> {{movie.year}}</li>
+    </ul>
+    <p>
+        {{movie.description}}
+    </p>
+    <br>
+</div>

@@ -1,34 +1,34 @@
-<form name="addMovieForm">
-    <p>
-        <label>Title</label>
-        <input name="title" type="text" ng-model="newTitle" required>
-        <div ng-show="addMovieForm.title.$invalid && addMovieForm.title.$dirty">
-            Title is not valid
+<div class="container-fluid">
+    <h1>Lisää elokuva</h1>
+    <form name="addMovieForm">
+        <div class="form-group">
+            <label for="title">Nimi</label>
+            <input name="title" type="text" id="title" class="form-control" ng-model="newTitle" required>
+            <div ng-show="addMovieForm.title.$invalid && addMovieForm.title.$dirty">
+                Nimi ei ole validi
+            </div>
         </div>
-    </p>
-    <p>
-        <label>Director</label>
-        <input name="director" type="text" ng-model="newDirector" required>
-        <div ng-show="addMovieForm.director.$invalid && addMovieForm.director.$dirty">
-            Director is not valid
+        <div class="form-group">
+            <label for="director">Ohjaaja</label>
+            <input name="director" type="text" id="director" class="form-control" ng-model="newDirector" required>
+            <div ng-show="addMovieForm.director.$invalid && addMovieForm.director.$dirty">
+                Ohjaaja ei ole validi
+            </div>
         </div>
-    </p>
-    <p>
-        <label>Year</label>
-        <input name="year" type="text" ng-model="newYear" required ng-minlength="4" ng-pattern="/^[0-9]+$/">
-        <div ng-show="addMovieForm.year.$invalid && addMovieForm.year.$dirty">
-            Publishing year is not valid
+        <div class="form-group">
+            <label for="year">Julkaisuvuosi</label>
+            <input name="year" type="text" id="year" class="form-control" ng-model="newYear" required ng-minlength="4" ng-pattern="/^[0-9]+$/">
+            <div ng-show="addMovieForm.year.$invalid && addMovieForm.year.$dirty">
+                Julkaisuvuosi ei ole validi
+            </div>
         </div>
-    </p>
-    <p>
-        <label>Description</label>
-        <input name="description" type="text" ng-model="newDescription" required>
-        <div ng-show="addMovieForm.description.$invalid && addMovieForm.description.$dirty">
-            Description is not valid
+        <div class="form-group">
+            <label for="description">Kuvaus</label>
+            <textarea name="description" type="text" id="description" class="form-control" ng-model="newDescription" required></textarea>
+            <div ng-show="addMovieForm.description.$invalid && addMovieForm.description.$dirty">
+                Kuvaus ei ole validi
+            </div>
         </div>
-    </p>
-   <p>
-        <button type="submit" value="Add Movie" ng-disabled="addMovieForm.$invalid" ng-click="addMovie()">Add Movie</button>
-    </p>
-</form>
-<a ng-href="#/movies">Back</a>
+        <button type="submit" class="btn btn-primary" value="Lisää" ng-disabled="addMovieForm.$invalid" ng-click="addMovie()">Lisää</button>
+    </form>
+</div>

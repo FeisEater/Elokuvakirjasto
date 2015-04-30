@@ -1,5 +1,13 @@
 var MovieApp = angular.module('MovieApp', ['ngRoute', 'firebase']);
 
+MovieApp.run(function(AuthenticationService, $rootScope){
+  $rootScope.logOut = function(){
+    AuthenticationService.logUserOut();
+  };
+
+  $rootScope.userLoggedIn = AuthenticationService.getUserLoggedIn();
+});
+
 MovieApp.config(['$httpProvider', function($httpProvider) {
   delete $httpProvider.defaults.headers.common["X-Requested-With"]
 }]);
@@ -7,19 +15,34 @@ MovieApp.config(['$httpProvider', function($httpProvider) {
 MovieApp.config(function($routeProvider){
 	$routeProvider.when('/', {
 		controller: 'ListMoviesController',
-		templateUrl: 'app/views/list.html'
+		templateUrl: 'app/views/list.html',
+                resolve: {
+                    currentAuth: function(AuthenticationService) {
+                      return AuthenticationService.checkLoggedIn();
+                    }
+                }
 	})
         .when('/movies', {
 		controller: 'ListMoviesController',
-		templateUrl: 'app/views/list.html'
+		templateUrl: 'app/views/list.html',
+                resolve: {
+                    currentAuth: function(AuthenticationService) {
+                      return AuthenticationService.checkLoggedIn();
+                    }
+                }
         })
         .when('/movies/new', {
                 controller: 'AddMovieController',
-                templateUrl: 'app/views/new.html'
+                templateUrl: 'app/views/new.html',
+                resolve: {
+                    currentAuth: function(AuthenticationService) {
+                      return AuthenticationService.checkLoggedIn();
+                    }
+                }
         })
-        .when('/movies/search', {
-                controller: 'SearchMoviesController',
-                templateUrl: 'app/views/search.html'
+        .when('/login', {
+                controller: 'UserController',
+                templateUrl: 'app/views/login.html'
         })
         .when('/movies/:id', {
                 controller: 'ShowMovieController',
@@ -27,7 +50,12 @@ MovieApp.config(function($routeProvider){
         })
         .when('/movies/:id/edit', {
                 controller: 'EditMovieController',
-                templateUrl: 'app/views/edit.html'
+                templateUrl: 'app/views/edit.html',
+                resolve: {
+                    currentAuth: function(AuthenticationService) {
+                      return AuthenticationService.checkLoggedIn();
+                    }
+                }
         });
 
 });

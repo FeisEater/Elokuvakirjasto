@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <p>{{message}}</p>
+
+    <h1>Kirjaudu sisään</h1>
+    <form name="logInForm">
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input name="email" type="text" id="email" class="form-control" ng-model="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input name="password" type="text" id="password" class="form-control" ng-model="password">
+        </div>
+        <button type="submit" class="btn btn-primary" value="Kirjaudu" ng-click="logIn()">Kirjaudu</button>
+    </form>
+
+    <h1>Rekisteröidy</h1>
+    <form name="registerForm">
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input name="email" type="text" id="email" class="form-control" ng-model="newEmail">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input name="password" type="text" id="password" class="form-control" ng-model="newPassword">
+        </div>
+        <button type="submit" class="btn btn-primary" value="Rekisteröidy" ng-click="register()">Rekisteröidy</button>
+    </form>
+</div>
+<br>

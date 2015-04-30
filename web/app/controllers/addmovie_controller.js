@@ -1,4 +1,7 @@
-MovieApp.controller('AddMovieController', function($scope, $location, FirebaseService){
+MovieApp.controller('AddMovieController', function($scope, currentAuth, $location, FirebaseService){
+    if(!currentAuth){
+        $location.path('/login');
+    }
     $scope.addMovie = function(){
         if ($scope.newTitle == "" || $scope.newDirector == "" || $scope.newYear == "" || $scope.newDescription == "")
             return;

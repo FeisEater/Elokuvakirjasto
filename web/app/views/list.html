@@ -1,7 +1,67 @@
-<ul ng-repeat="movie in movies">
-    <li><a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a>
-        <a ng-href="#/movies/{{movie.$id}}/edit">Edit</a>
-        <button ng-click="removeMovie(movie)">Remove</button></li>
-</ul>
-<a ng-href="#/movies/new">Add Movie</a><br>
-<a ng-href="#/movies/search">Search movies from omdb</a>
+<div class="container-fluid">
+    <div ng-controller="SearchMoviesController">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Hae elokuvia</h1>
+                <form name="logInForm">
+                    <div class="form-group">
+                        <label for="name">Nimi</label>
+                        <input type="text" id="name" class="form-control" ng-model="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="year">Julkaisuvuosi</label>
+                        <input type="text" id="year" class="form-control" ng-model="year">
+                    </div>
+
+                    <button class="btn btn-primary" ng-click="search()">Hae</button>
+                </form>
+            </div>
+        </div>
+        <br>
+
+        <div ng-if="count > 0">
+            <h2>Haulla löytyi {{count}} <ng-pluralize count="count" when="{'1': 'elokuva', 'other': 'elokuvaa'}"></ng-pluralize></h2>
+            <table class="table">
+                <col width="70%">
+                <col width="30%">
+                <tr>
+                    <th>Nimi</th>
+                    <th>Julkaisuvuosi</th>
+                </tr>
+                <tr ng-repeat="movie in movies">
+                    <td><a ng-href="http://www.imdb.com/title/{{movie.imdbID}}">{{movie.Title}}</a></td>
+                    <td>{{movie.Year}}</td>
+                </tr>
+            </table>
+        </div>
+        <div ng-if="count == 0">
+            <h2>Hakusanalla ei löytynyt elokuvia</h2>
+        </div>
+    </div>
+
+    <h1>Elokuvat</h1>
+    <table class="table">
+        <col width="50%">
+        <col width="20%">
+        <col width="10%">
+        <col width="10%">
+        <col width="10%">
+        <tr>
+            <th>Nimi</th>
+            <th>Ohjaaja</th>
+            <th>Julkaisuvuosi</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="movie in movies">
+            <td><a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a></td>
+            <td>{{movie.director}}</td>
+            <td>{{movie.year}}</td>
+            <td><a class="btn btn-default" ng-href="#/movies/{{movie.$id}}/edit">Muokkaa</a></td>
+            <td><button class="btn btn-danger" ng-show="userLoggedIn" ng-click="removeMovie(movie)">Poista</button></td>
+        </tr>
+    </table>
+    <a class="btn btn-primary" ng-href="#/movies/new">Lisää elokuva</a>
+    <a class="btn btn-primary" ng-href="#/login">Kirjaudu tai rekisteröidy</a><br><br>
+</div>
